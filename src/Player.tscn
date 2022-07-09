@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://ThrustParticles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player.png" type="Texture" id=3]
+
+[sub_resource type="PhysicsMaterial" id=5]
+bounce = 0.8
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14, 9 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6.5, 10 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.47099, 0.822526, 1 )
+colors = PoolColorArray( 0.658824, 0.647059, 0.654902, 1, 0.658824, 0.647059, 0.654902, 1, 0.658824, 0.647059, 0.654902, 1, 0.658824, 0.647059, 0.654902, 0 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 37.054
+
+[node name="Player" type="RigidBody2D" groups=["players"]]
+z_index = 1
+physics_material_override = SubResource( 5 )
+linear_damp = 0.2
+angular_damp = 0.5
+script = ExtResource( 1 )
+_touch_path = NodePath("../CanvasLayer/TouchHandler")
+turn_torque = 2500.0
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 14.5, 11 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2( -14, 11 )
+shape = SubResource( 2 )
+
+[node name="LeftThrust" type="Position2D" parent="."]
+position = Vector2( -18, 22 )
+
+[node name="ThrustParticles" parent="LeftThrust" instance=ExtResource( 2 )]
+emitting = false
+color_ramp = SubResource( 7 )
+
+[node name="RightThrust" type="Position2D" parent="."]
+position = Vector2( 18, 22 )
+
+[node name="ThrustParticles" parent="RightThrust" instance=ExtResource( 2 )]
+emitting = false
+color_ramp = SubResource( 7 )
+
+[node name="DeleteArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeleteArea"]
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[connection signal="body_entered" from="DeleteArea" to="." method="_on_DeleteArea_body_entered"]

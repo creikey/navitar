@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Exit-the-Premises.ogg-43c1b2f606de7be52e8d8ecce6a43a7c.oggstr"
+
+[deps]
+
+source_file="res://Exit-the-Premises.ogg"
+dest_files=[ "res://.import/Exit-the-Premises.ogg-43c1b2f606de7be52e8d8ecce6a43a7c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
