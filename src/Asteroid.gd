@@ -3,12 +3,11 @@ extends RigidBody2D
 onready var _collision: CollisionPolygon2D = $CollisionPolygon2D
 
 func _ready():
-	randomize()
-	var shade_change: float = rand_range(-0.05, 0.05)
 #	color = Game.asteroids + Color(shade_change,shade_change,shade_change)
 	$Polygon2D.color = Game.asteroids
 
 func create(radius: float):
+	seed((str(Game.get_challenge_number()) + str(global_position.x) + str(global_position.y)).hash())
 	var vertex_count := int(max(3.0, radius*0.4))
 	var deviation: float = radius/6
 	

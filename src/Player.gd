@@ -23,7 +23,11 @@ var _right_thrust: bool = false
 var _spawning_in: bool = true
 var _died: bool = false
 
+var rings: int = 0 setget set_rings
 var health: float = 1.0
+
+func set_rings(new_rings):
+	rings = int(clamp(new_rings, 0.0, 3.0))
 
 func _ready():
 	for s in _shapes:
@@ -31,11 +35,11 @@ func _ready():
 	_sprite.scale.x = 0.0
 	global_position = Game.get_game_resolution()/2.0
 
-func get_score() -> int:
-	return int((Game.get_game_resolution()/2.0 - global_position).length())
-
+#func get_score() -> int:
+#	return 
 
 func _physics_process(delta):
+	Game.cur_score = int(max(Game.cur_score, (Game.get_game_resolution()/2.0 - global_position).length()))
 	if health <= 0.0:
 		_build_base_button.can_use = false
 		if not _died:
@@ -43,6 +47,7 @@ func _physics_process(delta):
 			get_parent().add_child(expl)
 			expl.global_position = global_position
 			expl.emitting = true
+			Game.game_over()
 		_died = true
 		visible = false
 		linear_velocity = Vector2()
@@ -62,7 +67,7 @@ func _physics_process(delta):
 		return
 
 	health = clamp(health, 0.0, 1.0)
-	_build_base_button.can_use = health > 0.26
+	_build_base_button.can_use = rings == 3
 
 	applied_force = Vector2()
 	applied_torque = 0.0
@@ -89,7 +94,7 @@ func _on_DeleteArea_body_entered(body):
 
 
 func _on_BuildBaseButton_pressed():
-	health -= 0.25
+	rings = 0
 	var new_base = preload("res://Base.tscn").instance()
 	get_parent().add_child(new_base)
 	new_base.global_position = global_position

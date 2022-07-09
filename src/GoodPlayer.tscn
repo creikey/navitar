@@ -2,5 +2,7 @@
 
 [ext_resource path="res://Exit-the-Premises.ogg" type="AudioStream" id=1]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+[node name="GoodPlayer" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
+volume_db = -5.901
+autoplay = true

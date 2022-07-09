@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/roar.wav-7e6015e03160dd5635426a6896cd0487.sample"
+
+[deps]
+
+source_file="res://roar.wav"
+dest_files=[ "res://.import/roar.wav-7e6015e03160dd5635426a6896cd0487.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
