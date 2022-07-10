@@ -7,6 +7,7 @@ onready var bodyline: Line2D = $BodyLine
 
 export var do_init = false
 
+var player = null
 var between_points: float = 10.0
 
 func _ready():
@@ -27,6 +28,8 @@ func initialize_tail():
 	bodyline.points = PoolVector2Array(points)
 
 func _physics_process(delta):
+	if player.global_position.distance_to(global_position) > 2000.0:
+		queue_free() # dragons delete separately from the tiles
 	if get_player() != null and _anim.current_animation == "idle":
 		_anim.play("chase", 0.2)
 		$Roar.play()

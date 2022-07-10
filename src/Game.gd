@@ -5,7 +5,7 @@ enum {
 	THRUST_RIGHT
 }
 
-const tile: float = 1000.0
+const tile: float = 800.0
 
 signal show_restart
 
@@ -34,7 +34,7 @@ func get_challenge_number():
 	if Rune.available():
 		return Rune.get_challenge_number()
 	# days since Saturday, July 8 2023 12:00:00 am PDT
-	return floor((Time.get_unix_time_from_system() -  1657329348.0)/86400)
+	return floor((OS.get_unix_time() -  1657329348.0)/86400)
 
 func _ready():
 	if Rune.available():

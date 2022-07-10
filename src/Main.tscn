@@ -1,8 +1,7 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Base.tscn" type="PackedScene" id=3]
 [ext_resource path="res://TouchHandler.gd" type="Script" id=4]
 [ext_resource path="res://Poppins-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Procgen.gd" type="Script" id=6]
@@ -53,14 +52,18 @@ script = ExtResource( 1 )
 _build_base_button_path = NodePath("../CanvasLayer/BuildBaseButton")
 
 [node name="CreditLabel" type="Label" parent="."]
-margin_top = 152.0
+margin_top = 130.0
 margin_right = 400.0
-margin_bottom = 227.0
+margin_bottom = 231.0
 custom_fonts/font = SubResource( 11 )
 text = "Song is \"Exit the Premises\" by Kevin Macleod
 Programmed and Designed by creikey
-With contributions from Garret"
+With contributions from Garret
+The score is how far away you get!"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DailyChallengeLabel" type="Label" parent="."]
 margin_top = 239.0
@@ -183,8 +186,6 @@ script = ExtResource( 15 )
 [node name="Procgen" type="Node2D" parent="."]
 script = ExtResource( 6 )
 player_path = NodePath("../Player")
-
-[node name="Base" parent="." instance=ExtResource( 3 )]
 
 [connection signal="pressed" from="CanvasLayer/BuildBaseButton" to="Player" method="_on_BuildBaseButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/RestartButton" to="CanvasLayer/RestartButton" method="_on_RestartButton_pressed"]

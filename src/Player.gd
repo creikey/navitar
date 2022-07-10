@@ -23,7 +23,7 @@ var _right_thrust: bool = false
 var _spawning_in: bool = true
 var _died: bool = false
 
-var rings: int = 0 setget set_rings
+var rings: int = 3 setget set_rings
 var health: float = 1.0
 
 func set_rings(new_rings):

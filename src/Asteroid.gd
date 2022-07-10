@@ -4,11 +4,13 @@ onready var _collision: CollisionPolygon2D = $CollisionPolygon2D
 
 func _ready():
 #	color = Game.asteroids + Color(shade_change,shade_change,shade_change)
+	sleeping = true
 	$Polygon2D.color = Game.asteroids
+
 
 func create(radius: float):
 	seed((str(Game.get_challenge_number()) + str(global_position.x) + str(global_position.y)).hash())
-	var vertex_count := int(max(3.0, radius*0.4))
+	var vertex_count := int(max(3.0, radius*0.2))
 	var deviation: float = radius/6
 	
 	var vertices: Array = []
