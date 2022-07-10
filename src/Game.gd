@@ -7,6 +7,8 @@ enum {
 
 const tile: float = 1000.0
 
+signal show_restart
+
 var cur_score: int = 0
 var asteroids := Color("#A8A5A7")
 
@@ -17,22 +19,25 @@ func get_game_resolution() -> Vector2:
 	return Vector2(width, height)
 
 func _input(event):
-	if OS.get_name() == "HTML5":
+	if Rune.available():
 		return
 	if event.is_pressed() and event is InputEventKey and event.scancode == KEY_R:
 		rune_restart_game()
 
 func game_over():
-	if OS.get_name() == "HTML5":
+	if Rune.available():
 		Rune.game_over()
+	else:
+		emit_signal("show_restart")
 
 func get_challenge_number():
-	if OS.get_name() == "HTML5":
+	if Rune.available():
 		return Rune.get_challenge_number()
-	return 0
+	# days since Saturday, July 8 2023 12:00:00 am PDT
+	return floor((Time.get_unix_time_from_system() -  1657329348.0)/86400)
 
 func _ready():
-	if OS.get_name() == "HTML5":
+	if Rune.available():
 		Rune.init(self)
 
 func rune_resume_game():

@@ -3,6 +3,9 @@ extends Node
 var noHtmlMessage = "Games using the Rune SDK must be run in the browser and tested using the Rune CLI. See https://github.com/rune/rune-games-sdk/tree/staging/godot for instructions."
 var noRuneMessage = "It seems you forgot to include Rune SDK in HTML5 export options. See https://github.com/rune/rune-games-sdk/tree/staging/godot for instructions."
 
+func available() -> bool:
+	return JavaScript.create_object("Object") and _Rune
+
 func _assert_rune():
 	assert(JavaScript.create_object("Object"), noHtmlMessage)
 	assert(_Rune, noRuneMessage)
