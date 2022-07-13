@@ -9,6 +9,7 @@ onready var rings = [
 ]
 
 func _process(delta):
+	rect_position.y = Game.get_game_resolution().y*0.35
 	for r in range(rings.size()):
 		var target = 0.2
 		if num_rings > r:
